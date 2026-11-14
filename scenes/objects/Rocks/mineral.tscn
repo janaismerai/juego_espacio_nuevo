@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://c7yqdhuxs5krk"]
+
+[ext_resource type="Texture2D" uid="uid://cw07m0ftgav82" path="res://scenes/objects/Rocks/OreAndGem/OreGemSpritesheet copy.PNG" id="1_ggrfh"]
+[ext_resource type="PackedScene" uid="uid://cbipedq5cne3r" path="res://scenes/components/collectable_component.tscn" id="2_mlime"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ui8dc"]
+atlas = ExtResource("1_ggrfh")
+region = Rect2(64, 64, 32, 32)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_rnimd"]
+radius = 13.0384
+
+[node name="Mineral" type="Sprite2D"]
+y_sort_enabled = true
+position = Vector2(-9.5, -8)
+scale = Vector2(0.40625, 0.5)
+texture = SubResource("AtlasTexture_ui8dc")
+
+[node name="CollectableComponent" parent="." instance=ExtResource("2_mlime")]
+collectable_name = "mineral"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CollectableComponent"]
+shape = SubResource("CircleShape2D_rnimd")
+debug_color = Color(0.215686, 0.623529, 0.407843, 0.419608)

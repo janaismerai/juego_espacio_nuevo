@@ -1,0 +1,36 @@
+[gd_scene load_steps=7 format=3 uid="uid://dcg32in8qle4x"]
+
+[ext_resource type="Texture2D" uid="uid://c0loahc6kxgm4" path="res://scenes/objects/Rocks/Stones pack x10 free/Sprites/sprite - 01 copy.png" id="1_tjib7"]
+[ext_resource type="Script" path="res://scenes/objects/Rocks/small_rock.gd" id="2_jpc7j"]
+[ext_resource type="PackedScene" uid="uid://ckqy1roh6fvo7" path="res://scenes/components/hurt_component.tscn" id="2_yo86k"]
+[ext_resource type="PackedScene" uid="uid://cce507aol6fmh" path="res://scenes/components/damage_component.tscn" id="3_5tyet"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qatl7"]
+radius = 7.3535
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6u3up"]
+size = Vector2(22.5405, 25.6)
+
+[node name="SmallRock" type="Sprite2D"]
+position = Vector2(18.5, -25)
+scale = Vector2(1.15625, 1.25)
+texture = ExtResource("1_tjib7")
+region_enabled = true
+region_rect = Rect2(8, 0, 32, 40)
+script = ExtResource("2_jpc7j")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0.432432, 7.2)
+shape = SubResource("CircleShape2D_qatl7")
+
+[node name="HurtComponent" parent="." instance=ExtResource("2_yo86k")]
+
+[node name="HurtComponentCollisionShape2D" type="CollisionShape2D" parent="HurtComponent"]
+position = Vector2(1.27027, 0.799999)
+shape = SubResource("RectangleShape2D_6u3up")
+debug_color = Color(0.831373, 0.172549, 0.858824, 0.419608)
+
+[node name="DamageComponent" parent="." instance=ExtResource("3_5tyet")]
+max_damage = 3
